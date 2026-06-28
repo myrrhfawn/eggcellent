@@ -21,3 +21,6 @@ frontend/dist/
 # OS / editor
 .DS_Store
 *.log
+
+# AI
+.claude/
