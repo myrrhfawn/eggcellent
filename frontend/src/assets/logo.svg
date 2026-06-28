@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="400mm"
+   height="100mm"
+   viewBox="0 0 400 100"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.68407995"
+     inkscape:cx="668.05057"
+     inkscape:cy="469.97431"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="105.09987"
+       y="65.687416"
+       width="2060.3955"
+       height="383.17661"
+       id="rect7" />
+    <rect
+       x="240.85387"
+       y="284.64548"
+       width="437.91611"
+       height="240.85387"
+       id="rect2" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#252422;fill-opacity:1;stroke-width:0.383885"
+       id="rect1"
+       width="400"
+       height="100"
+       x="0"
+       y="0"
+       ry="15"
+       rx="15" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:59.1749px;font-family:Aka-AcidGR-FatItalic;-inkscape-font-specification:'Aka-AcidGR-FatItalic Bold Italic';letter-spacing:0px;writing-mode:lr-tb;direction:ltr;fill:#ff0049;fill-opacity:1;stroke-width:1.233;stroke-dasharray:none"
+       x="29.013088"
+       y="64.806885"
+       id="text2"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'League Spartan';-inkscape-font-specification:'League Spartan Bold Italic';fill:#ff0049;fill-opacity:1;stroke-width:1.233;stroke-dasharray:none"
+         x="29.013088"
+         y="64.806885">EGGCELLENT</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:33.8625px;font-family:Aka-AcidGR-FatItalic;-inkscape-font-specification:'Aka-AcidGR-FatItalic Bold Italic';letter-spacing:0px;writing-mode:lr-tb;direction:ltr;fill:#f1f3d8;fill-opacity:1;stroke-width:0.705465"
+       x="142.28815"
+       y="107.5674"
+       id="text1"
+       transform="matrix(1.0740576,-0.06704897,0.07775302,0.92619498,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Aka-AcidGR-FatItalic;-inkscape-font-specification:'Aka-AcidGR-FatItalic Bold Italic';fill:#f1f3d8;fill-opacity:1;stroke-width:0.705465"
+         x="142.28815"
+         y="107.5674">online school</tspan></text>
+  </g>
+</svg>

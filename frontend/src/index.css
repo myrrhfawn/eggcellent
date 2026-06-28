@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brand fonts from fonts/. The family names must EXACTLY match those
+   embedded in logo.svg (<text font-family>), otherwise the logo breaks. */
+@font-face {
+  font-family: "League Spartan";
+  src: url("./assets/fonts/LeagueSpartan-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aka-AcidGR-FatItalic";
+  src: url("./assets/fonts/aka-acidgr-fatitalic.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Montserrat — headings (geometric poster style, like the logo; with Cyrillic) */
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Onest — main text font (body/UI), full Cyrillic */
+@font-face {
+  font-family: "Onest";
+  src: url("./assets/fonts/Onest.ttf") format("truetype");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #f1f3d8;
+  color: #252422;
+  font-family: "Onest", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Rounded "pill" buttons */
+@layer components {
+  .pill {
+    @apply inline-flex items-center justify-center rounded-pill px-7 py-3
+      font-semibold uppercase tracking-wide transition-transform duration-200;
+  }
+  .pill-primary {
+    @apply pill bg-brand text-cream hover:scale-105 active:scale-95;
+  }
+  .pill-ink {
+    @apply pill bg-ink text-cream hover:scale-105 active:scale-95;
+  }
+  .pill-outline {
+    @apply pill border-2 border-ink text-ink hover:bg-ink hover:text-cream;
+  }
+  .section-title {
+    @apply font-display text-4xl font-extrabold uppercase tracking-tight
+      sm:text-5xl;
+  }
+  .card {
+    @apply rounded-3xl bg-cream shadow-[6px_6px_0_0_#252422] border-2 border-ink;
+  }
+}

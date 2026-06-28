@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="345mm"
+   height="40mm"
+   viewBox="0 0 345 40"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   sodipodi:docname="logo_white.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.68407995"
+     inkscape:cx="668.05057"
+     inkscape:cy="469.97431"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="105.09987"
+       y="65.687416"
+       width="2060.3955"
+       height="383.17661"
+       id="rect7" />
+    <rect
+       x="240.85387"
+       y="284.64548"
+       width="437.91611"
+       height="240.85387"
+       id="rect2" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:58.724px;font-family:Aka-AcidGR-FatItalic;-inkscape-font-specification:'Aka-AcidGR-FatItalic Bold Italic';letter-spacing:0px;writing-mode:lr-tb;direction:ltr;fill:#ff0049;fill-opacity:1;stroke-width:1.22361;stroke-dasharray:none"
+       x="-2.4370492"
+       y="39.462543"
+       id="text2"
+       transform="scale(1.0041801,0.99583734)"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'League Spartan';-inkscape-font-specification:'League Spartan Bold Italic';fill:#ff0049;fill-opacity:1;stroke-width:1.22361;stroke-dasharray:none"
+         x="-2.4370492"
+         y="39.462543">EGGCELLENT</tspan></text>
+  </g>
+</svg>

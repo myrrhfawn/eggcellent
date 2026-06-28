@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "teachers": "Teachers",
+    "reviews": "Reviews",
+    "pricing": "Pricing",
+    "test": "Test",
+    "apply": "Apply"
+  },
+  "hero": {
+    "cta_test": "Take the level test",
+    "cta_apply": "Leave a request",
+    "scroll": "Scroll down"
+  },
+  "teachers": {
+    "title": "Our teachers",
+    "subtitle": "The team that makes English click",
+    "level": "Level",
+    "experience": "Experience"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "subtitle": "What our students say"
+  },
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "Choose your learning format",
+    "per_lesson": "UAH / lesson",
+    "total": "total",
+    "lessons": "lessons",
+    "discount": "off",
+    "popular": "Popular",
+    "month": "/ mo",
+    "choose": "Choose"
+  },
+  "test": {
+    "title": "English level test",
+    "subtitle": "Answer one by one — get your CEFR level at the end",
+    "intro_desc": "A free test that places your English on the international CEFR scale — from A1 (beginner) to C2 (proficiency). Questions appear one at a time. Leave a request for lessons at the end.",
+    "info_questions": "{{count}} questions",
+    "info_time": "≈ {{min}} min",
+    "info_cert": "CEFR scale · A1–C2",
+    "start": "Start the test",
+    "question": "Question",
+    "of": "of",
+    "next": "Next",
+    "back": "Back",
+    "finish": "Finish",
+    "result_title": "Your level:",
+    "result_score": "Score",
+    "result_cta": "Apply for lessons",
+    "retry": "Try again"
+  },
+  "lead": {
+    "title": "Leave a request",
+    "subtitle": "Leave your contacts — we'll call and pick the right format",
+    "name": "Name",
+    "phone": "Phone number",
+    "submit": "Send request",
+    "sending": "Sending...",
+    "success": "Thank you! We'll call you soon 🥚",
+    "error": "Something went wrong. Please try again.",
+    "name_required": "Enter your name",
+    "phone_required": "Enter a valid phone"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "follow": "Follow us"
+  }
+}
