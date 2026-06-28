@@ -5,7 +5,7 @@ services:
       context: ./backend
     env_file: .env
     environment:
-      - SQLITE_PATH=/app/data/db.sqlite3
+      # SQLITE_PATH comes from .env; must stay under /app/data (the mounted volume)
       - MEDIA_ROOT=/app/media
     volumes:
       # SQLite DB bind-mounted to the host → ./data/db.sqlite3 (easy to back up)
@@ -15,18 +15,30 @@ services:
       - "8000"
     restart: unless-stopped
 
-  # Frontend: built React served by nginx + proxy to app
+  # Frontend: built React served by nginx + proxy to app.
+  # HTTP by default; set ENABLE_HTTPS=1 in .env (with certs in CERTS_DIR) for HTTPS.
   web:
     build:
       context: .
       dockerfile: frontend/Dockerfile
     depends_on:
       - app
+    environment:
+      # Toggle HTTPS purely via .env — no certs needed while ENABLE_HTTPS=0
+      - ENABLE_HTTPS=${ENABLE_HTTPS:-0}
+      - SERVER_NAME=${SERVER_NAME:-_}
+      - SSL_CERT=${SSL_CERT:-/etc/nginx/certs/fullchain.pem}
+      - SSL_KEY=${SSL_KEY:-/etc/nginx/certs/privkey.pem}
     ports:
       - "${WEB_PORT:-80}:80"
+      - "443:443"
     volumes:
       # nginx serves media from the shared volume
       - media_data:/media:ro
+      # certs (read-only) — used only when ENABLE_HTTPS=1
+      - ${CERTS_DIR:-/data/certs}:/etc/nginx/certs:ro
+      # ACME webroot shared with certbot (for Let's Encrypt issuance/renewal)
+      - certbot_webroot:/var/www/certbot:ro
     restart: unless-stopped
 
   # Telegram bot: uses the same REST API (the app container).
@@ -40,5 +52,24 @@ services:
       - app
     restart: unless-stopped
 
+  # Certbot (Let's Encrypt). One-shot on `up`: auto-issues the cert when
+  # ENABLE_HTTPS=1 and none exists yet (no-op otherwise). Renewal is a cron job
+  # (scripts/install-renew-cron.sh) that overrides the entrypoint with `certbot`.
+  certbot:
+    image: certbot/certbot
+    depends_on:
+      - web
+    environment:
+      - ENABLE_HTTPS=${ENABLE_HTTPS:-0}
+      - SERVER_NAME=${SERVER_NAME:-}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL:-}
+    volumes:
+      - ${CERTS_DIR:-/data/certs}:/etc/letsencrypt
+      - certbot_webroot:/var/www/certbot
+      - ./scripts/certbot-init.sh:/certbot-init.sh:ro
+    entrypoint: ["sh", "/certbot-init.sh"]
+    restart: "no"
+
 volumes:
   media_data:
+  certbot_webroot:

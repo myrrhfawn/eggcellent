@@ -15,6 +15,9 @@ ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(",")
 CSRF_TRUSTED_ORIGINS = [
     o for o in os.environ.get("CSRF_TRUSTED_ORIGINS", "").split(",") if o
 ]
+# Behind the nginx proxy that sets X-Forwarded-Proto — lets Django detect HTTPS
+# so request.scheme / absolute media URLs are correct (no mixed content on HTTPS).
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 INSTALLED_APPS = [
     # modeltranslation must come BEFORE django.contrib.admin

@@ -93,6 +93,56 @@ Bot endpoints (`/api/bot/*`) are protected by a shared secret `BOT_API_SECRET`
 `BOT_ADMIN_PASSWORD` (see `.env.example`). The bot starts together with the stack
 (`docker compose up`).
 
+## HTTPS / TLS (fully automatic)
+
+HTTPS is driven entirely by `.env` — certs are issued, applied and renewed without
+manual steps.
+
+- `ENABLE_HTTPS=0` (default) → HTTP only, no certs needed (good for local dev).
+- `ENABLE_HTTPS=1` → HTTPS. On `docker compose up` the bundled **certbot** service
+  auto-issues a Let's Encrypt cert (webroot challenge) into `CERTS_DIR` if one
+  doesn't exist yet; nginx serves HTTP meanwhile and **auto-switches to HTTPS**
+  the moment the cert appears (the web container watches for it). Certs are stored
+  in `CERTS_DIR` (default `/data/certs`) in standard certbot layout
+  (`live/<domain>/…`).
+
+### Go live with HTTPS
+
+1. Point the domain's **A record** at the server, open ports **80 + 443**
+   (OCI Security List *and* the OS firewall: `sudo iptables -I INPUT -p tcp --dport 443 -j ACCEPT`).
+2. In `.env` set:
+   ```env
+   ENABLE_HTTPS=1
+   SERVER_NAME=eggcellentschool.online www.eggcellentschool.online
+   LETSENCRYPT_EMAIL=you@example.com
+   CERTS_DIR=/data/certs
+   SSL_CERT=/etc/nginx/certs/live/eggcellentschool.online/fullchain.pem
+   SSL_KEY=/etc/nginx/certs/live/eggcellentschool.online/privkey.pem
+   ```
+   Also add the domain to `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS` (https://…).
+3. `docker compose up -d --build`. That's it — certbot issues the cert, nginx
+   flips to HTTPS within ~a minute, HTTP redirects to HTTPS.
+
+### Auto-renewal
+
+Install the cron job once (renews when <30 days remain; nginx reloads the new cert
+by itself):
+
+```bash
+./scripts/install-renew-cron.sh
+```
+
+Manual renew (rarely needed):
+
+```bash
+docker compose run --rm --entrypoint certbot certbot renew --webroot -w /var/www/certbot
+```
+
+**How it works:** `nginx/web-entrypoint.sh` renders HTTP or HTTPS config and watches
+for cert/config changes (auto-switch + reload). `scripts/certbot-init.sh` runs on
+`up` and issues the cert if missing. `scripts/install-renew-cron.sh` schedules
+`certbot renew`. The HTTPS template is `nginx/https.conf.template`.
+
 ## What is configurable from the admin
 
 Everything important: site settings and social links, teachers (carousel), reviews,

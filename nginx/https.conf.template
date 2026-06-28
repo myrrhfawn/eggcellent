@@ -1,13 +1,40 @@
+# HTTPS nginx config. Rendered by the nginx image entrypoint via envsubst:
+# ${SERVER_NAME}, ${SSL_CERT}, ${SSL_KEY} come from the container environment.
+# (NGINX_ENVSUBST_FILTER limits substitution to those vars so nginx's own
+#  $host/$uri/$scheme are left intact.)
+
+# HTTP :80 — ACME challenge + redirect everything else to HTTPS
 server {
     listen 80;
-    server_name _;
+    server_name ${SERVER_NAME};
+
+    # Let's Encrypt webroot challenge (for issuance/renewal)
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+# HTTPS :443 — the actual site
+server {
+    listen 443 ssl;
+    http2 on;
+    server_name ${SERVER_NAME};
+
+    ssl_certificate     ${SSL_CERT};
+    ssl_certificate_key ${SSL_KEY};
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+    ssl_session_cache shared:SSL:10m;
 
     root /usr/share/nginx/html;
     index index.html;
-
     client_max_body_size 20M;
 
-    # Compression
     gzip on;
     gzip_types text/css application/javascript application/json image/svg+xml;
     gzip_min_length 1024;
@@ -48,12 +75,6 @@ server {
         alias /media/;
         expires 30d;
         add_header Cache-Control "public";
-    }
-
-    # Let's Encrypt webroot challenge — lets certs be issued/renewed over HTTP
-    # (so you can get certs while still in HTTP-only mode, then flip ENABLE_HTTPS=1)
-    location /.well-known/acme-challenge/ {
-        root /var/www/certbot;
     }
 
     # SPA fallback

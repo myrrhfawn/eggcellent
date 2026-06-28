@@ -13,7 +13,13 @@ RUN npm run build
 # --- runtime: nginx serves static files + proxies to the backend ---
 FROM nginx:alpine AS runtime
 
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+# Both config variants + launcher that picks one (HTTP/HTTPS) and auto-switches.
+COPY nginx/nginx.conf /etc/nginx/eggcellent/http.conf
+COPY nginx/https.conf.template /etc/nginx/eggcellent/https.conf.template
+COPY nginx/web-entrypoint.sh /eggcellent-web.sh
+RUN chmod +x /eggcellent-web.sh
+
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE 80 443
+CMD ["/eggcellent-web.sh"]
