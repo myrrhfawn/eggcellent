@@ -1,0 +1,14 @@
+**/node_modules
+**/dist
+**/__pycache__
+**/*.pyc
+**/.venv
+**/venv
+backend/data
+backend/media
+backend/staticfiles
+**/db.sqlite3
+.git
+designs
+fonts
+**/.env

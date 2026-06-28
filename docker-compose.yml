@@ -1,0 +1,44 @@
+services:
+  # Backend: Django + DRF under gunicorn
+  app:
+    build:
+      context: ./backend
+    env_file: .env
+    environment:
+      - SQLITE_PATH=/app/data/db.sqlite3
+      - MEDIA_ROOT=/app/media
+    volumes:
+      # SQLite DB bind-mounted to the host → ./data/db.sqlite3 (easy to back up)
+      - ./data:/app/data
+      - media_data:/app/media
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  # Frontend: built React served by nginx + proxy to app
+  web:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      - app
+    ports:
+      - "${WEB_PORT:-80}:80"
+    volumes:
+      # nginx serves media from the shared volume
+      - media_data:/media:ro
+    restart: unless-stopped
+
+  # Telegram bot: uses the same REST API (the app container).
+  bot:
+    build:
+      context: ./telegram-bot
+    env_file: .env
+    environment:
+      - API_BASE_URL=http://app:8000/api
+    depends_on:
+      - app
+    restart: unless-stopped
+
+volumes:
+  media_data:
