@@ -1,0 +1,13 @@
+from rest_framework import generics
+
+from apps.common import LangActivationMixin
+
+from .models import SiteSettings
+from .serializers import SiteSettingsSerializer
+
+
+class SiteSettingsView(LangActivationMixin, generics.RetrieveAPIView):
+    serializer_class = SiteSettingsSerializer
+
+    def get_object(self):
+        return SiteSettings.load()
